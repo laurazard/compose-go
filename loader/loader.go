@@ -584,6 +584,13 @@ func LoadService(name string, serviceDict map[string]interface{}, workingDir str
 		serviceConfig.Volumes[i] = volume
 	}
 
+	for i, link := range serviceConfig.Links {
+		parts := strings.Split(link, ":")
+		if len(parts) == 1 {
+			serviceConfig.Links[i] = parts[0] + ":" + parts[0]
+		}
+	}
+
 	return serviceConfig, nil
 }
 

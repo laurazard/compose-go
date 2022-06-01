@@ -203,9 +203,9 @@ func services(workingDir, homeDir string) []types.ServiceConfig {
 				"com.example.empty-label": "",
 			},
 			Links: []string{
-				"db",
+				"db:db",
 				"db:database",
-				"redis",
+				"redis:redis",
 			},
 			Logging: &types.LoggingConfig{
 				Driver: "syslog",
