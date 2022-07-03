@@ -32,8 +32,12 @@ func checkConsistency(project *types.Project) error {
 			return errors.Wrapf(errdefs.ErrInvalid, "service %q has neither an image nor a build context specified", s.Name)
 		}
 
+		// it be here
 		for network := range s.Networks {
 			if _, ok := project.Networks[network]; !ok {
+				if network == "default" {
+					continue
+				}
 				return errors.Wrap(errdefs.ErrInvalid, fmt.Sprintf("service %q refers to undefined network %s", s.Name, network))
 			}
 		}
