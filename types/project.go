@@ -36,7 +36,7 @@ type Project struct {
 	Volumes      Volumes           `yaml:",omitempty" json:"volumes,omitempty"`
 	Secrets      Secrets           `yaml:",omitempty" json:"secrets,omitempty"`
 	Configs      Configs           `yaml:",omitempty" json:"configs,omitempty"`
-	Extensions   Extensions        `yaml:",inline" json:"-"` // https://github.com/golang/go/issues/6213
+	Extensions   Extensions        `yaml:",inline" json:",inline"` // https://github.com/golang/go/issues/6213
 	ComposeFiles []string          `yaml:"-" json:"-"`
 	Environment  map[string]string `yaml:"-" json:"-"`
 
