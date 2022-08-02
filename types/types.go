@@ -115,7 +115,7 @@ type ServiceConfig struct {
 	DNSSearch         StringList                       `mapstructure:"dns_search" yaml:"dns_search,omitempty" json:"dns_search,omitempty"`
 	Dockerfile        string                           `yaml:"dockerfile,omitempty" json:"dockerfile,omitempty"`
 	DomainName        string                           `mapstructure:"domainname" yaml:"domainname,omitempty" json:"domainname,omitempty"`
-	Entrypoint        ShellCommand                     `yaml:",omitempty" json:"entrypoint,omitempty"`
+	Entrypoint        ShellCommand                     `yaml:"entrypoint" json:"entrypoint"`
 	Environment       MappingWithEquals                `yaml:",omitempty" json:"environment,omitempty"`
 	EnvFile           StringList                       `mapstructure:"env_file" yaml:"env_file,omitempty" json:"env_file,omitempty"`
 	Expose            StringOrNumberList               `yaml:",omitempty" json:"expose,omitempty"`
