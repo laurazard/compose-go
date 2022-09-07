@@ -21,6 +21,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strings"
 
 	"github.com/distribution/distribution/v3/reference"
 	godigest "github.com/opencontainers/go-digest"
@@ -155,6 +156,16 @@ func (p Project) withServices(names []string, fn ServiceFunc, seen map[string]bo
 		dependencies := service.GetDependencies()
 		if len(dependencies) > 0 {
 			err := p.withServices(dependencies, fn, seen)
+			if err != nil {
+				return err
+			}
+		}
+		var links []string
+		if len(service.Links) > 0 {
+			for _, l := range service.Links {
+				links = append(links, strings.Split(l, ":")[0])
+			}
+			err := p.withServices(links, fn, seen)
 			if err != nil {
 				return err
 			}
