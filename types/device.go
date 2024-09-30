@@ -36,6 +36,10 @@ func (c *DeviceCount) DecodeMapstructure(value interface{}) error {
 	case int:
 		*c = DeviceCount(v)
 	case string:
+		if v == "" {
+			*c = -1
+			return nil
+		}
 		if strings.ToLower(v) == "all" {
 			*c = -1
 			return nil
